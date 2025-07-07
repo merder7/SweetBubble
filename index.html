@@ -11,25 +11,10 @@
       margin: 0;
       padding: 0;
       text-align: center;
-      transition: background 0.3s;
     }
     h1 {
       color: #ff4d88;
-      margin: 20px 0 10px;
-    }
-    .language-switch {
-      position: absolute;
-      top: 10px;
-      right: 20px;
-    }
-    .language-switch button {
-      padding: 6px 12px;
-      border: none;
-      border-radius: 6px;
-      background: #ff4d88;
-      color: white;
-      font-weight: bold;
-      cursor: pointer;
+      margin: 20px 0;
     }
     .category-container {
       display: flex;
@@ -98,76 +83,106 @@
       color: white;
       cursor: pointer;
     }
-    input#searchBox {
-      padding: 10px;
-      font-size: 16px;
-      width: 80%;
-      max-width: 400px;
-      margin-bottom: 20px;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-    }
     @keyframes fadeIn {
       from {opacity: 0; transform: translateY(10px);}
       to {opacity: 1; transform: translateY(0);}
     }
     .ana-bg {
-      background-image: url('https://cdn.pixabay.com/photo/2016/03/05/19/02/sandwich-1238615_960_720.jpg');
+      background-image: url('https://images.unsplash.com/photo-1550547660-d9450f859349');
     }
     .tatli-bg {
-      background-image: url('https://cdn.pixabay.com/photo/2020/07/21/12/15/waffle-5427881_960_720.jpg');
+      background-image: url('https://images.unsplash.com/photo-1601979031925-56f9f27be0df');
     }
     .soguk-bg {
-      background-image: url('https://cdn.pixabay.com/photo/2017/03/27/13/28/lemonade-2179014_960_720.jpg');
+      background-image: url('https://images.unsplash.com/photo-1562059390-a761a084768e');
     }
     .sicak-bg {
-      background-image: url('https://cdn.pixabay.com/photo/2015/06/24/16/36/coffee-820659_960_720.jpg');
+      background-image: url('https://images.unsplash.com/photo-1511920170033-f8396924c348');
     }
     .dondurma-bg {
-      background-image: url('https://cdn.pixabay.com/photo/2016/08/08/22/51/ice-cream-1579128_960_720.jpg');
+      background-image: url('https://images.unsplash.com/photo-1620049262996-3f7ecca1b3c1');
     }
   </style>
 </head>
 <body>
-  <h1 id="pageTitle" data-tr="SweetBubble Menü" data-en="SweetBubble Menu">SweetBubble Menü</h1>
-
-  <div class="language-switch">
-    <button onclick="toggleLanguage()">EN</button>
-  </div>
-
-  <input
-    type="text"
-    id="searchBox"
-    placeholder="Ürün ara..."
-    data-tr="Ürün ara..."
-    data-en="Search product..."
-    oninput="searchMenu()"
-  />
+  <h1>SweetBubble Menü</h1>
 
   <div class="category-container" id="categoryContainer">
-    <div class="category ana-bg" onclick="showMenu('ana')" data-tr="🍔 Ana Yemekler" data-en="🍔 Main Dishes">🍔 Ana Yemekler</div>
-    <div class="category tatli-bg" onclick="showMenu('tatli')" data-tr="🍰 Tatlılar" data-en="🍰 Desserts">🍰 Tatlılar</div>
-    <div class="category soguk-bg" onclick="showMenu('soguk')" data-tr="🥤 Soğuk İçecekler" data-en="🥤 Cold Drinks">🥤 Soğuk İçecekler</div>
-    <div class="category sicak-bg" onclick="showMenu('sicak')" data-tr="☕ Sıcak İçecekler" data-en="☕ Hot Drinks">☕ Sıcak İçecekler</div>
-    <div class="category dondurma-bg" onclick="showMenu('dondurma')" data-tr="🍨 Dondurma" data-en="🍨 Ice Cream">🍨 Dondurma</div>
+    <div class="category ana-bg" onclick="showMenu('ana')">🍔 Ana Yemekler</div>
+    <div class="category tatli-bg" onclick="showMenu('tatli')">🍰 Tatlılar</div>
+    <div class="category soguk-bg" onclick="showMenu('soguk')">🥤 Soğuk İçecekler</div>
+    <div class="category sicak-bg" onclick="showMenu('sicak')">☕ Sıcak İçecekler</div>
+    <div class="category dondurma-bg" onclick="showMenu('dondurma')">🍨 Dondurma</div>
   </div>
 
   <div class="menu-items" id="ana">
-    <h2 data-tr="Ana Yemekler" data-en="Main Dishes">Ana Yemekler</h2>
-    <div class="item">
-      <span class="item-name" data-tr="Kaşarlı Tost" data-en="Cheese Toast">Kaşarlı Tost</span>
-      <span class="item-desc" data-tr="Taze beyaz ekmek içinde erimiş kaşar peyniri" data-en="Melted cheese in fresh white bread">Taze beyaz ekmek içinde erimiş kaşar peyniri</span>
-      <span class="item-price">250₺</span>
-    </div>
-    <div class="item">
-      <span class="item-name" data-tr="Kavurmalı Kaşarlı Tost" data-en="Beef & Cheese Toast">Kavurmalı Kaşarlı Tost</span>
-      <span class="item-desc" data-tr="Etli kavurma ve kaşarın muhteşem uyumu" data-en="Savory beef with melted cheese">Etli kavurma ve kaşarın muhteşem uyumu</span>
-      <span class="item-price">300₺</span>
-    </div>
-    <button class="back-btn" onclick="goBack()" data-tr="◀ Kategorilere Dön" data-en="◀ Back to Categories">◀ Kategorilere Dön</button>
+    <h2>Ana Yemekler</h2>
+    <div class="item"><span class="item-name">Kahvaltı Tabağı</span><span class="item-price">350₺</span></div>
+    <div class="item"><span class="item-name">Spesyal Kasap Burger</span><span class="item-price">380₺</span></div>
+    <div class="item"><span class="item-name">Hamburger</span><span class="item-price">320₺</span></div>
+    <div class="item"><span class="item-name">Cheeseburger</span><span class="item-price">360₺</span></div>
+    <div class="item"><span class="item-name">Sosisli</span><span class="item-price">150₺</span></div>
+    <div class="item"><span class="item-name">Goralı</span><span class="item-price">200₺</span></div>
+    <div class="item"><span class="item-name">Patso</span><span class="item-price">230₺</span></div>
+    <div class="item"><span class="item-name">Büyük Patates</span><span class="item-price">280₺</span></div>
+    <div class="item"><span class="item-name">Küçük Patates</span><span class="item-price">220₺</span></div>
+    <div class="item"><span class="item-name">Kaşarlı Tost</span><span class="item-price">250₺</span></div>
+    <div class="item"><span class="item-name">Sucuklu Tost</span><span class="item-price">250₺</span></div>
+    <div class="item"><span class="item-name">Karışık Tost</span><span class="item-price">280₺</span></div>
+    <div class="item"><span class="item-name">Kavurmalı Kaşarlı Tost</span><span class="item-price">300₺</span></div>
+    <div class="item"><span class="item-name">Köfte Ekmek</span><span class="item-price">350₺</span></div>
+    <div class="item"><span class="item-name">Köfte Porsiyon</span><span class="item-price">430₺</span></div>
+    <div class="item"><span class="item-name">Satır Et</span><span class="item-price">480₺</span></div>
+    <div class="item"><span class="item-name">Sucuk Ekmek</span><span class="item-price">350₺</span></div>
+    <button class="back-btn" onclick="goBack()">◀ Kategorilere Dön</button>
   </div>
 
-  <!-- Diğer kategoriler de aynı yapıyla eklenebilir -->
+  <div class="menu-items" id="tatli">
+    <h2>Tatlılar</h2>
+    <div class="item"><span class="item-name">Bubble Waffle Tabak</span><span class="item-price">320₺</span></div>
+    <div class="item"><span class="item-name">Waffle Kapalı</span><span class="item-price">300₺</span></div>
+    <div class="item"><span class="item-name">Külah Waffle</span><span class="item-price">320₺</span></div>
+    <div class="item"><span class="item-name">Cheesecake</span><span class="item-price">220₺</span></div>
+    <div class="item"><span class="item-name">Dilim Pasta</span><span class="item-price">320₺</span></div>
+    <button class="back-btn" onclick="goBack()">◀ Kategorilere Dön</button>
+  </div>
+
+  <div class="menu-items" id="soguk">
+    <h2>Soğuk İçecekler</h2>
+    <div class="item"><span class="item-name">Coca Cola</span><span class="item-price">60₺</span></div>
+    <div class="item"><span class="item-name">Fanta / Sprite / Fuse Tea</span><span class="item-price">60₺</span></div>
+    <div class="item"><span class="item-name">Ayran</span><span class="item-price">50₺</span></div>
+    <div class="item"><span class="item-name">Limonata</span><span class="item-price">100₺</span></div>
+    <div class="item"><span class="item-name">Sade Soda</span><span class="item-price">40₺</span></div>
+    <div class="item"><span class="item-name">Meyveli Soda</span><span class="item-price">50₺</span></div>
+    <div class="item"><span class="item-name">Milkshake</span><span class="item-price">160₺</span></div>
+    <div class="item"><span class="item-name">Frappe</span><span class="item-price">150₺</span></div>
+    <button class="back-btn" onclick="goBack()">◀ Kategorilere Dön</button>
+  </div>
+
+  <div class="menu-items" id="sicak">
+    <h2>Sıcak İçecekler</h2>
+    <div class="item"><span class="item-name">Çay</span><span class="item-price">40₺</span></div>
+    <div class="item"><span class="item-name">Türk Kahvesi</span><span class="item-price">125₺</span></div>
+    <div class="item"><span class="item-name">Double Türk Kahvesi</span><span class="item-price">160₺</span></div>
+    <div class="item"><span class="item-name">Sade Nescafe</span><span class="item-price">130₺</span></div>
+    <div class="item"><span class="item-name">Sütlü Nescafe</span><span class="item-price">160₺</span></div>
+    <div class="item"><span class="item-name">Cappuchino</span><span class="item-price">160₺</span></div>
+    <div class="item"><span class="item-name">Latte</span><span class="item-price">160₺</span></div>
+    <div class="item"><span class="item-name">Espresso</span><span class="item-price">150₺</span></div>
+    <div class="item"><span class="item-name">Double Espresso</span><span class="item-price">220₺</span></div>
+    <div class="item"><span class="item-name">Sıcak Çikolata</span><span class="item-price">160₺</span></div>
+    <div class="item"><span class="item-name">Bitki Çayı</span><span class="item-price">100₺</span></div>
+    <button class="back-btn" onclick="goBack()">◀ Kategorilere Dön</button>
+  </div>
+
+  <div class="menu-items" id="dondurma">
+    <h2>Dondurma</h2>
+    <div class="item"><span class="item-name">Dondurma (Top)</span><span class="item-price">50₺</span></div>
+    <div class="item"><span class="item-name">Meyve Rüyası</span><span class="item-price">200₺</span></div>
+    <div class="item"><span class="item-name">Çikolata Rüyası</span><span class="item-price">200₺</span></div>
+    <button class="back-btn" onclick="goBack()">◀ Kategorilere Dön</button>
+  </div>
 
   <script>
     function showMenu(id) {
@@ -184,57 +199,6 @@
         el.style.display = 'none';
       });
       document.getElementById('categoryContainer').style.display = 'flex';
-      document.getElementById('searchBox').value = '';
-    }
-
-    function toggleLanguage() {
-      const currentLang = document.documentElement.lang;
-      const newLang = currentLang === 'tr' ? 'en' : 'tr';
-      document.documentElement.lang = newLang;
-
-      document.querySelectorAll('[data-tr]').forEach(el => {
-        el.textContent = el.getAttribute(`data-${newLang}`);
-      });
-
-      const searchInput = document.getElementById('searchBox');
-      if (searchInput) {
-        searchInput.placeholder = searchInput.getAttribute(`data-${newLang}`);
-      }
-
-      document.querySelector('.language-switch button').textContent = newLang === 'tr' ? 'EN' : 'TR';
-    }
-
-    function searchMenu() {
-      const query = document.getElementById('searchBox').value.toLowerCase();
-      const allMenus = document.querySelectorAll('.menu-items');
-
-      allMenus.forEach(menu => {
-        const items = menu.querySelectorAll('.item');
-        let anyVisible = false;
-
-        items.forEach(item => {
-          const name = item.querySelector('.item-name')?.textContent.toLowerCase() || '';
-          const desc = item.querySelector('.item-desc')?.textContent.toLowerCase() || '';
-
-          if (name.includes(query) || desc.includes(query)) {
-            item.style.display = '';
-            anyVisible = true;
-          } else {
-            item.style.display = 'none';
-          }
-        });
-
-        menu.style.display = anyVisible ? 'block' : 'none';
-      });
-
-      if (query === '') {
-        document.querySelectorAll('.menu-items').forEach(menu => {
-          menu.style.display = 'none';
-        });
-        document.getElementById('categoryContainer').style.display = 'flex';
-      } else {
-        document.getElementById('categoryContainer').style.display = 'none';
-      }
     }
   </script>
 </body>
