@@ -159,7 +159,18 @@
     <input type="text" id="searchInput" placeholder="Ürün ara..." oninput="filterItems()" />
   </div>
 
-  <!DOCTYPE html>
+  <div class="category-container" id="categoryContainer">
+    <div class="category" onclick="showMenu('ana')">🍔 Ana Yemekler</div>
+    <div class="category" onclick="showMenu('soguk')">🥤 Soğuk İçecekler</div>
+    <div class="category" onclick="showMenu('sicak')">☕ Sıcak İçecekler</div>
+    <div class="category" onclick="showMenu('tatli')">🍰 Tatlılar</div>
+    <div class="category" onclick="showMenu('dondurma')">🍨 Dondurma</div>
+  </div>
+  [Karakter sınırına takılmamak için kodu parça parça paylaşacağım. Aşağıda ilk bölümü paylaşıyorum. Lütfen "devam" yazman yeterli.]
+
+<!-- index.html - BAŞLANGIÇ -->
+
+<!DOCTYPE html>
 <html lang="tr">
 <head>
   <meta charset="UTF-8" />
@@ -168,127 +179,150 @@
   <style>
     body {
       font-family: 'Segoe UI', sans-serif;
-      background: #fff6fa;
+      background: linear-gradient(to bottom, #fff6f9, #e6f5ff);
       margin: 0;
       padding: 0;
       color: #333;
     }
     h1 {
       text-align: center;
-      color: #ff4da6;
+      color: #ff4d88;
       margin-top: 20px;
     }
     .language-switch {
-      position: absolute;
+      position: fixed;
       top: 10px;
       right: 20px;
+      z-index: 10;
     }
     .language-switch button {
       padding: 6px 12px;
       border: none;
-      border-radius: 6px;
-      background: #4da6ff;
+      border-radius: 8px;
+      background: #4db8ff;
       color: white;
       font-weight: bold;
       cursor: pointer;
     }
-    .search-container {
-      text-align: center;
+    .search-box {
+      display: flex;
+      justify-content: center;
       margin: 20px 0;
     }
-    #searchInput {
+    .search-box input {
       padding: 10px;
       width: 80%;
       max-width: 400px;
-      border: 1px solid #ccc;
-      border-radius: 8px;
+      border: 2px solid #ffb3d9;
+      border-radius: 12px;
     }
     .category-container {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
       gap: 16px;
-      padding: 10px;
+      padding: 10px 20px;
     }
     .category {
-      width: 45%;
-      max-width: 200px;
+      width: 150px;
       height: 100px;
-      background-color: #ffe0ef;
-      border-radius: 12px;
+      border-radius: 16px;
+      background-size: cover;
+      background-position: center;
       display: flex;
       align-items: center;
       justify-content: center;
+      color: white;
       font-weight: bold;
-      color: #333;
       font-size: 16px;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
       cursor: pointer;
-      transition: 0.3s;
+      text-shadow: 1px 1px 3px black;
+      transition: transform 0.3s ease;
     }
     .category:hover {
       transform: scale(1.05);
     }
+
     .menu-items {
       display: none;
       padding: 20px;
-      max-width: 800px;
+      max-width: 700px;
       margin: auto;
       animation: fadeIn 0.5s ease-in-out;
     }
     .menu-items h2 {
-      color: #ff4da6;
+      color: #ff4d88;
       border-bottom: 1px solid #ccc;
-      padding-bottom: 10px;
+      padding-bottom: 6px;
     }
-    .item {
+
+    .item-card {
+      background: white;
+      border-radius: 12px;
+      padding: 10px;
+      margin: 12px 0;
       display: flex;
+      gap: 12px;
       align-items: center;
-      justify-content: space-between;
-      margin: 15px 0;
-      flex-wrap: wrap;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
     }
-    .item img {
+
+    .item-card img {
       width: 80px;
       height: 80px;
-      object-fit: cover;
       border-radius: 10px;
-      margin-right: 15px;
+      object-fit: cover;
     }
+
     .item-info {
       flex: 1;
     }
-    .item-name {
+
+    .item-info h4 {
+      margin: 0;
+      font-size: 16px;
       font-weight: bold;
     }
+
+    .item-info p {
+      margin: 4px 0 0;
+      font-size: 14px;
+      color: #777;
+    }
+
     .item-price {
-      color: #222;
       font-weight: bold;
+      color: #222;
+      font-size: 15px;
     }
+
     .back-btn {
-      margin-top: 20px;
-      padding: 10px 20px;
-      background-color: #4da6ff;
+      display: block;
+      margin: 30px auto 10px;
+      padding: 10px 24px;
+      background: #ff4d88;
       color: white;
       border: none;
-      border-radius: 8px;
+      border-radius: 10px;
       cursor: pointer;
+      font-weight: bold;
     }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
+
     @media (max-width: 600px) {
-      .item {
+      .item-card {
         flex-direction: column;
         align-items: flex-start;
       }
-      .item img {
-        margin-bottom: 10px;
-      }
-      .category {
+      .item-card img {
         width: 100%;
+        height: 150px;
       }
+    }
+
+    @keyframes fadeIn {
+      from {opacity: 0; transform: translateY(10px);}
+      to {opacity: 1; transform: translateY(0);}
     }
   </style>
 </head>
@@ -299,74 +333,194 @@
     <button onclick="toggleLanguage()">EN</button>
   </div>
 
-  <div class="search-container">
-    <input type="text" id="searchInput" onkeyup="filterItems()" placeholder="Ürün ara...">
+  <div class="search-box">
+    <input type="text" id="searchInput" onkeyup="searchMenu()" placeholder="Ürün ara...">
   </div>
 
-  <div class="category-container" id="categoryContainer">
-    <div class="category" onclick="showMenu('ana')">🍔 Ana Yemekler</div>
-    <div class="category" onclick="showMenu('tatli')">🍰 Tatlılar</div>
-    <div class="category" onclick="showMenu('soguk')">🥤 Soğuk İçecekler</div>
-    <div class="category" onclick="showMenu('sicak')">☕ Sıcak İçecekler</div>
-    <div class="category" onclick="showMenu('dondurma')">🍨 Dondurma</div>
-  </div>
-
-  <!-- KATEGORİLER BURADA -->
-  <div id="ana" class="menu-items">
+ <div class="menu-items" id="ana">
     <h2>Ana Yemekler</h2>
-    <!-- Ana yemekler -->
-    <div class="item"><img src="https://cdn.pixabay.com/photo/2017/06/02/18/24/breakfast-2362154_960_720.jpg"><div class="item-info"><div class="item-name">Kahvaltı Tabağı</div><div class="item-price">350₺</div></div></div>
-    <div class="item"><img src="https://cdn.pixabay.com/photo/2021/02/09/20/39/hamburger-5999722_960_720.jpg"><div class="item-info"><div class="item-name">Spesyal Kasap Burger</div><div class="item-price">380₺</div></div></div>
-    <div class="item"><img src="https://cdn.pixabay.com/photo/2016/03/05/19/02/sandwich-1238615_960_720.jpg"><div class="item-info"><div class="item-name">Hamburger</div><div class="item-price">320₺</div></div></div>
-    <div class="item"><img src="https://cdn.pixabay.com/photo/2014/10/23/18/05/burger-500054_960_720.jpg"><div class="item-info"><div class="item-name">Cheeseburger</div><div class="item-price">360₺</div></div></div>
-    <!-- Diğerleri de aynı formatta eklenecek -->
-    <button class="back-btn" onclick="goBack()">◀ Kategorilere Dön</button>
+    <div class="item-card">
+      <img src="https://cdn.pixabay.com/photo/2017/06/02/18/24/turkish-breakfast-2366928_1280.jpg">
+      <div class="item-info"><h4>Kahvaltı Tabağı</h4><p class="item-price">350₺</p></div>
+    </div>
+    <div class="item-card">
+      <img src="https://cdn.pixabay.com/photo/2021/08/03/20/48/burger-6518312_960_720.jpg">
+      <div class="item-info"><h4>Spesyal Kasap Burger</h4><p class="item-price">380₺</p></div>
+    </div>
+    <div class="item-card">
+      <img src="https://cdn.pixabay.com/photo/2016/03/05/19/02/sandwich-1238615_960_720.jpg">
+      <div class="item-info"><h4>Hamburger</h4><p class="item-price">320₺</p></div>
+    </div>
+    <div class="item-card">
+      <img src="https://cdn.pixabay.com/photo/2020/02/24/02/02/burger-4875534_960_720.jpg">
+      <div class="item-info"><h4>Cheeseburger</h4><p class="item-price">360₺</p></div>
+    </div>
+    <!-- Diğer ana yemek ürünleri aynı formatla devam eder -->
+    <div class="item-card"><img src="https://cdn.pixabay.com/photo/2016/04/20/18/43/hot-dog-1349340_960_720.jpg"><div class="item-info"><h4>Sosisli</h4><p class="item-price">150₺</p></div></div>
+    <div class="item-card"><img src="https://cdn.pixabay.com/photo/2017/04/23/17/03/fast-food-2257099_960_720.jpg"><div class="item-info"><h4>Goralı</h4><p class="item-price">200₺</p></div></div>
+    <div class="item-card"><img src="https://cdn.pixabay.com/photo/2017/06/02/18/19/fries-2366913_960_720.jpg"><div class="item-info"><h4>Patso</h4><p class="item-price">230₺</p></div></div>
+    <div class="item-card"><img src="https://cdn.pixabay.com/photo/2020/02/26/10/13/french-fries-4882022_960_720.jpg"><div class="item-info"><h4>Büyük Patates</h4><p class="item-price">280₺</p></div></div>
+    <div class="item-card"><img src="https://cdn.pixabay.com/photo/2015/06/03/13/13/fries-796620_960_720.jpg"><div class="item-info"><h4>Küçük Patates</h4><p class="item-price">220₺</p></div></div>
+    <div class="item-card"><img src="https://cdn.pixabay.com/photo/2017/03/27/13/28/sandwich-2178749_960_720.jpg"><div class="item-info"><h4>Kaşarlı Tost</h4><p class="item-price">250₺</p></div></div>
+    <div class="item-card"><img src="https://cdn.pixabay.com/photo/2020/07/03/18/35/toast-5367201_960_720.jpg"><div class="item-info"><h4>Sucuklu Tost</h4><p class="item-price">250₺</p></div></div>
+    <div class="item-card"><img src="https://cdn.pixabay.com/photo/2019/05/16/06/54/toast-4205566_960_720.jpg"><div class="item-info"><h4>Karışık Tost</h4><p class="item-price">280₺</p></div></div>
+    <div class="item-card"><img src="https://cdn.pixabay.com/photo/2020/02/20/21/44/tost-4865250_960_720.jpg"><div class="item-info"><h4>Kavurmalı Kaşarlı</h4><p class="item-price">300₺</p></div></div>
+    <div class="item-card"><img src="https://cdn.pixabay.com/photo/2016/03/05/20/02/meatball-1239196_960_720.jpg"><div class="item-info"><h4>Köfte Ekmek</h4><p class="item-price">350₺</p></div></div>
+    <div class="item-card"><img src="https://cdn.pixabay.com/photo/2020/04/27/12/53/meatballs-5098787_960_720.jpg"><div class="item-info"><h4>Köfte Porsiyon</h4><p class="item-price">430₺</p></div></div>
+    <div class="item-card"><img src="https://cdn.pixabay.com/photo/2017/08/01/20/05/sliced-meat-2561472_960_720.jpg"><div class="item-info"><h4>Satır Et</h4><p class="item-price">480₺</p></div></div>
+    <div class="item-card"><img src="https://cdn.pixabay.com/photo/2016/05/24/15/29/sausage-1415187_960_720.jpg"><div class="item-info"><h4>Sucuk Ekmek</h4><p class="item-price">350₺</p></div></div>
+    <button class="back-btn" onclick="goBack()">← Geri</button>
   </div>
 
-  <div id="tatli" class="menu-items">
+  <!-- Diğer kategoriler (tatlılar, içecekler, dondurma) sırayla eklenecek -->
+
+<!-- Devam için "devam" yazman yeterli. Bir sonraki bölümde Tatlılar kategorisi ile devam edeceğim. -->
+  <div class="menu-items" id="tatli">
     <h2>Tatlılar</h2>
-    <div class="item"><img src="https://cdn.pixabay.com/photo/2020/07/21/12/15/waffle-5427881_960_720.jpg"><div class="item-info"><div class="item-name">Bubble Waffle Tabak</div><div class="item-price">320₺</div></div></div>
-    <div class="item"><img src="https://cdn.pixabay.com/photo/2020/05/30/18/15/waffle-5241467_960_720.jpg"><div class="item-info"><div class="item-name">Waffle Kapalı</div><div class="item-price">300₺</div></div></div>
-    <div class="item"><img src="https://cdn.pixabay.com/photo/2017/05/07/08/56/ice-cream-2297997_960_720.jpg"><div class="item-info"><div class="item-name">Külah Waffle</div><div class="item-price">320₺</div></div></div>
-    <div class="item"><img src="https://cdn.pixabay.com/photo/2017/05/07/08/56/cheesecake-2298012_960_720.jpg"><div class="item-info"><div class="item-name">Cheesecake</div><div class="item-price">220₺</div></div></div>
-    <div class="item"><img src="https://cdn.pixabay.com/photo/2020/06/16/08/14/cake-5303782_960_720.jpg"><div class="item-info"><div class="item-name">Dilim Pasta</div><div class="item-price">320₺</div></div></div>
-    <button class="back-btn" onclick="goBack()">◀ Kategorilere Dön</button>
+    <div class="item-card">
+      <img src="https://cdn.pixabay.com/photo/2021/05/17/18/00/waffle-6260341_960_720.jpg">
+      <div class="item-info"><h4>Bubble Waffle Tabak</h4><p class="item-price">320₺</p></div>
+    </div>
+    <div class="item-card">
+      <img src="https://cdn.pixabay.com/photo/2017/05/07/08/56/waffle-2291323_960_720.jpg">
+      <div class="item-info"><h4>Waffle Kapalı</h4><p class="item-price">300₺</p></div>
+    </div>
+    <div class="item-card">
+      <img src="https://cdn.pixabay.com/photo/2017/08/07/12/08/waffle-2608118_960_720.jpg">
+      <div class="item-info"><h4>Külah Waffle</h4><p class="item-price">320₺</p></div>
+    </div>
+    <div class="item-card">
+      <img src="https://cdn.pixabay.com/photo/2020/01/09/20/37/cheesecake-4750108_960_720.jpg">
+      <div class="item-info"><h4>Cheesecake</h4><p class="item-price">220₺</p></div>
+    </div>
+    <div class="item-card">
+      <img src="https://cdn.pixabay.com/photo/2020/04/10/17/24/cake-5024174_960_720.jpg">
+      <div class="item-info"><h4>Dilim Pasta</h4><p class="item-price">320₺</p></div>
+    </div>
+    <button class="back-btn" onclick="goBack()">← Geri</button>
   </div>
+  <div class="menu-items" id="dondurma">
+    <h2>Dondurmalar</h2>
+    
+    <div class="item-card">
+      <img src="https://cdn.pixabay.com/photo/2016/06/22/06/03/ice-cream-1479043_960_720.jpg">
+      <div class="item-info"><h4>Dondurma Top</h4><p class="item-price">50₺</p></div>
+    </div>
+    
+    <div class="item-card">
+      <img src="https://cdn.pixabay.com/photo/2017/06/25/21/57/ice-cream-2441603_960_720.jpg">
+      <div class="item-info"><h4>Meyve Rüyası</h4><p class="item-price">200₺</p></div>
+    </div>
+    
+    <div class="item-card">
+      <img src="https://cdn.pixabay.com/photo/2017/08/06/09/20/ice-cream-2588542_960_720.jpg">
+      <div class="item-info"><h4>Çikolata Rüyası</h4><p class="item-price">200₺</p></div>
+    </div>
 
-  <!-- Soğuk içecekler, sıcak içecekler ve dondurma kategorileri de aynı mantıkla eklenecek -->
-  <!-- (Kalanları istersen hemen tamamlayabilirim) -->
+    <button class="back-btn" onclick="goBack()">← Geri</button>
+  </div>
+  <div class="menu-items" id="soguk">
+    <h2>Soğuk İçecekler</h2>
 
-  <script>
-    function showMenu(id) {
-      document.querySelectorAll('.menu-items').forEach(el => el.style.display = 'none');
-      document.getElementById('categoryContainer').style.display = 'none';
-      document.getElementById(id).style.display = 'block';
-      window.scrollTo(0, 0);
-    }
+    <div class="item-card">
+      <img src="https://cdn.pixabay.com/photo/2016/08/17/20/26/coca-cola-1603150_960_720.jpg">
+      <div class="item-info"><h4>Coca Cola</h4><p class="item-price">60₺</p></div>
+    </div>
 
-    function goBack() {
-      document.querySelectorAll('.menu-items').forEach(el => el.style.display = 'none');
-      document.getElementById('categoryContainer').style.display = 'flex';
-    }
+    <div class="item-card">
+      <img src="https://cdn.pixabay.com/photo/2020/08/10/18/30/orange-soda-5478840_960_720.jpg">
+      <div class="item-info"><h4>Fanta / Sprite / Fuse Tea</h4><p class="item-price">60₺</p></div>
+    </div>
 
-    function filterItems() {
-      const input = document.getElementById('searchInput').value.toLowerCase();
-      const items = document.querySelectorAll('.item');
-      items.forEach(item => {
-        const text = item.textContent.toLowerCase();
-        item.style.display = text.includes(input) ? 'flex' : 'none';
-      });
-    }
+    <div class="item-card">
+      <img src="https://cdn.pixabay.com/photo/2017/07/30/18/39/ayran-2558370_960_720.jpg">
+      <div class="item-info"><h4>Ayran</h4><p class="item-price">50₺</p></div>
+    </div>
 
-    function toggleLanguage() {
-      const lang = document.documentElement.lang;
-      document.documentElement.lang = lang === 'tr' ? 'en' : 'tr';
-      document.getElementById('pageTitle').textContent = lang === 'tr' ? 'SweetBubble Menu' : 'SweetBubble Menü';
-      document.querySelectorAll('.back-btn').forEach(btn => {
-        btn.textContent = lang === 'tr' ? '◀ Back to Categories' : '◀ Kategorilere Dön';
-      });
-      document.getElementById('searchInput').placeholder = lang === 'tr' ? 'Search for a product...' : 'Ürün ara...';
-    }
-  </script>
-</body>
-</html>
+    <div class="item-card">
+      <img src="https://cdn.pixabay.com/photo/2018/08/17/18/37/lemonade-3613527_960_720.jpg">
+      <div class="item-info"><h4>Limonata</h4><p class="item-price">100₺</p></div>
+    </div>
+
+    <div class="item-card">
+      <img src="https://cdn.pixabay.com/photo/2017/03/17/10/36/water-2155754_960_720.jpg">
+      <div class="item-info"><h4>Sade Soda</h4><p class="item-price">40₺</p></div>
+    </div>
+
+    <div class="item-card">
+      <img src="https://cdn.pixabay.com/photo/2020/06/25/18/35/soft-drink-5342214_960_720.jpg">
+      <div class="item-info"><h4>Meyveli Soda</h4><p class="item-price">50₺</p></div>
+    </div>
+
+    <div class="item-card">
+      <img src="https://cdn.pixabay.com/photo/2016/10/23/19/50/milkshake-1762264_960_720.jpg">
+      <div class="item-info"><h4>Milkshake</h4><p class="item-price">160₺</p></div>
+    </div>
+
+    <div class="item-card">
+      <img src="https://cdn.pixabay.com/photo/2016/03/05/20/07/coffee-1239090_960_720.jpg">
+      <div class="item-info"><h4>Frappe</h4><p class="item-price">150₺</p></div>
+    </div>
+
+    <button class="back-btn" onclick="goBack()">← Geri</button>
+  </div>
+  <div class="menu-items" id="sicak">
+    <h2>Sıcak İçecekler</h2>
+
+    <div class="item-card">
+      <img src="https://cdn.pixabay.com/photo/2014/11/17/13/17/tea-534116_960_720.jpg">
+      <div class="item-info"><h4>Çay</h4><p class="item-price">40₺</p></div>
+    </div>
+
+    <div class="item-card">
+      <img src="https://cdn.pixabay.com/photo/2017/01/18/15/49/coffee-1994807_960_720.jpg">
+      <div class="item-info"><h4>Türk Kahvesi</h4><p class="item-price">125₺</p></div>
+    </div>
+
+    <div class="item-card">
+      <img src="https://cdn.pixabay.com/photo/2018/06/18/21/28/coffee-3486470_960_720.jpg">
+      <div class="item-info"><h4>Double Türk Kahvesi</h4><p class="item-price">160₺</p></div>
+    </div>
+
+    <div class="item-card">
+      <img src="https://cdn.pixabay.com/photo/2017/08/06/18/29/coffee-2591142_960_720.jpg">
+      <div class="item-info"><h4>Sade Nescafe</h4><p class="item-price">130₺</p></div>
+    </div>
+
+    <div class="item-card">
+      <img src="https://cdn.pixabay.com/photo/2015/09/09/20/28/coffee-932102_960_720.jpg">
+      <div class="item-info"><h4>Sütlü Nescafe</h4><p class="item-price">160₺</p></div>
+    </div>
+
+    <div class="item-card">
+      <img src="https://cdn.pixabay.com/photo/2015/07/02/10/14/cappuccino-828527_960_720.jpg">
+      <div class="item-info"><h4>Cappuccino</h4><p class="item-price">160₺</p></div>
+    </div>
+
+    <div class="item-card">
+      <img src="https://cdn.pixabay.com/photo/2014/09/26/22/40/coffee-463482_960_720.jpg">
+      <div class="item-info"><h4>Latte</h4><p class="item-price">160₺</p></div>
+    </div>
+
+    <div class="item-card">
+      <img src="https://cdn.pixabay.com/photo/2016/06/22/20/33/coffee-1477042_960_720.jpg">
+      <div class="item-info"><h4>Espresso</h4><p class="item-price">150₺</p></div>
+    </div>
+
+    <div class="item-card">
+      <img src="https://cdn.pixabay.com/photo/2016/11/29/03/53/coffee-1869820_960_720.jpg">
+      <div class="item-info"><h4>Double Espresso</h4><p class="item-price">220₺</p></div>
+    </div>
+
+    <div class="item-card">
+      <img src="https://cdn.pixabay.com/photo/2016/11/18/17/20/cocoa-1835436_960_720.jpg">
+      <div class="item-info"><h4>Sıcak Çikolata</h4><p class="item-price">160₺</p></div>
+    </div>
+
+    <div class="item-card">
+      <img src="https://cdn.pixabay.com/photo/2017/02/07/00/50/tea-2040082_960_720.jpg">
+      <div class="item-info"><h4>Bitki Çayı</h4><p class="item-price">100₺</p></div>
+    </div>
+
+    <button class="back-btn" onclick="goBack()">← Geri</button>
+  </div>
