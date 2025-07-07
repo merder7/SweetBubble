@@ -11,10 +11,25 @@
       margin: 0;
       padding: 0;
       text-align: center;
+      transition: background 0.3s;
     }
     h1 {
       color: #ff4d88;
       margin: 20px 0;
+    }
+    .language-switch {
+      position: absolute;
+      top: 10px;
+      right: 20px;
+    }
+    .language-switch button {
+      padding: 6px 12px;
+      border: none;
+      border-radius: 6px;
+      background: #ff4d88;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
     }
     .category-container {
       display: flex;
@@ -36,9 +51,9 @@
       justify-content: center;
       font-size: 18px;
       font-weight: bold;
-      transition: transform 0.2s;
       background-size: cover;
       background-position: center;
+      transition: transform 0.3s, opacity 0.3s;
     }
     .category:hover {
       transform: scale(1.05);
@@ -50,6 +65,7 @@
       max-width: 600px;
       margin: auto;
       text-align: left;
+      animation: fadeIn 0.5s ease-in-out;
     }
     .menu-items h2 {
       color: #ff4d88;
@@ -58,9 +74,34 @@
     .item {
       display: flex;
       justify-content: space-between;
-      margin: 8px 0;
+      margin: 10px 0;
+      flex-direction: column;
     }
-    /* Kategori görsel arkaplanları */
+    .item-name {
+      font-weight: bold;
+    }
+    .item-desc {
+      font-size: 0.9em;
+      color: #555;
+    }
+    .item-price {
+      font-weight: bold;
+      color: #333;
+      text-align: right;
+    }
+    .back-btn {
+      margin-top: 20px;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 8px;
+      background: #ff4d88;
+      color: white;
+      cursor: pointer;
+    }
+    @keyframes fadeIn {
+      from {opacity: 0; transform: translateY(10px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
     .ana-bg {
       background-image: url('https://cdn.pixabay.com/photo/2016/03/05/19/02/sandwich-1238615_960_720.jpg');
     }
@@ -79,9 +120,13 @@
   </style>
 </head>
 <body>
-  <h1>SweetBubble Menü</h1>
+  <h1 id="pageTitle">SweetBubble Menü</h1>
 
-  <div class="category-container">
+  <div class="language-switch">
+    <button onclick="toggleLanguage()">EN</button>
+  </div>
+
+  <div class="category-container" id="categoryContainer">
     <div class="category ana-bg" onclick="showMenu('ana')">🍔 Ana Yemekler</div>
     <div class="category tatli-bg" onclick="showMenu('tatli')">🍰 Tatlılar</div>
     <div class="category soguk-bg" onclick="showMenu('soguk')">🥤 Soğuk İçecekler</div>
@@ -89,34 +134,49 @@
     <div class="category dondurma-bg" onclick="showMenu('dondurma')">🍨 Dondurma</div>
   </div>
 
-  <!-- Menü içerikleri aynı şekilde korunuyor -->
-  <!-- (Menü içeriği burada aynı kalıyor, kesilmedi) -->
-
-  <script>
-    function showMenu(id) {
-      document.querySelectorAll('.menu-items').forEach(el => {
-        el.style.display = 'none';
-      });
-      document.getElementById(id).style.display = 'block';
-      window.scrollTo(0, document.getElementById(id).offsetTop - 10);
-    }
-  </script>
-</body>
-</html>
-
-    <h2>Dondurma</h2>
-    <div class="item"><span>Dondurma top</span><span>50₺</span></div>
-    <div class="item"><span>Meyve rüyası</span><span>200₺</span></div>
-    <div class="item"><span>Çikolata rüyası</span><span>200₺</span></div>
+  <div class="menu-items" id="ana">
+    <h2>Ana Yemekler</h2>
+    <div class="item">
+      <span class="item-name">Kaşarlı Tost</span>
+      <span class="item-desc">Taze beyaz ekmek içinde erimiş kaşar peyniri</span>
+      <span class="item-price">250₺</span>
+    </div>
+    <div class="item">
+      <span class="item-name">Kavurmalı Kaşarlı Tost</span>
+      <span class="item-desc">Etli kavurma ve kaşarın muhteşem uyumu</span>
+      <span class="item-price">300₺</span>
+    </div>
+    <!-- Daha fazla ürün buraya eklenebilir -->
+    <button class="back-btn" onclick="goBack()">◀ Kategorilere Dön</button>
   </div>
 
+  <!-- Diğer kategoriler (tatlı, soguk, sicak, dondurma) aynı şekilde doldurulabilir -->
+
   <script>
     function showMenu(id) {
       document.querySelectorAll('.menu-items').forEach(el => {
         el.style.display = 'none';
       });
+      document.getElementById('categoryContainer').style.display = 'none';
       document.getElementById(id).style.display = 'block';
-      window.scrollTo(0, document.getElementById(id).offsetTop - 10);
+      window.scrollTo(0, 0);
+    }
+
+    function goBack() {
+      document.querySelectorAll('.menu-items').forEach(el => {
+        el.style.display = 'none';
+      });
+      document.getElementById('categoryContainer').style.display = 'flex';
+    }
+
+    function toggleLanguage() {
+      const current = document.documentElement.lang;
+      document.documentElement.lang = current === 'tr' ? 'en' : 'tr';
+      document.getElementById('pageTitle').textContent =
+        current === 'tr' ? 'SweetBubble Menu' : 'SweetBubble Menü';
+      document.querySelectorAll('.back-btn').forEach(btn => {
+        btn.textContent = current === 'tr' ? '◀ Back to Categories' : '◀ Kategorilere Dön';
+      });
     }
   </script>
 </body>
