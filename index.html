@@ -1,131 +1,141 @@
-
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Kafe Menüsü</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SweetBubble Menü</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
-      background: #fffbe6;
+      font-family: 'Segoe UI', sans-serif;
+      background: #fff6f9;
+      margin: 0;
+      padding: 0;
       text-align: center;
-      padding: 20px;
     }
     h1 {
-      color: #b85c38;
+      color: #ff4d88;
+      margin: 20px 0;
     }
-    button {
-      margin: 10px;
-      padding: 15px 25px;
-      font-size: 16px;
-      background-color: #ffcc80;
-      border: none;
-      border-radius: 10px;
+    .category-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 16px;
+      padding: 20px;
+    }
+    .category {
+      background-color: #ffe0ec;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
       cursor: pointer;
-      transition: background 0.3s;
+      width: 180px;
+      transition: transform 0.2s;
     }
-    button:hover {
-      background-color: #ffb74d;
+    .category:hover {
+      transform: scale(1.05);
     }
-    .menu-item {
-      margin: 10px 0;
-      font-size: 18px;
+    .menu-items {
+      display: none;
+      padding: 20px;
+      max-width: 600px;
+      margin: auto;
+      text-align: left;
     }
-    #menu-container {
-      margin-top: 30px;
+    .menu-items h2 {
+      color: #ff4d88;
+      border-bottom: 1px solid #ddd;
+    }
+    .item {
+      display: flex;
+      justify-content: space-between;
+      margin: 8px 0;
     }
   </style>
 </head>
 <body>
+  <h1>SweetBubble Menü</h1>
 
-  <h1>🍽️ Kafe Menüsü</h1>
-
-  <div>
-    <button onclick="showMenu('anayemek')">Ana Yemek</button>
-    <button onclick="showMenu('tatli')">Tatlı</button>
-    <button onclick="showMenu('dondurma')">Dondurma</button>
-    <button onclick="showMenu('soguk')">Soğuk İçecek</button>
-    <button onclick="showMenu('sicak')">Sıcak İçecek</button>
+  <div class="category-container">
+    <div class="category" onclick="showMenu('ana')">🍔 Ana Yemekler</div>
+    <div class="category" onclick="showMenu('tatli')">🍰 Tatlılar</div>
+    <div class="category" onclick="showMenu('soguk')">🥤 Soğuk İçecekler</div>
+    <div class="category" onclick="showMenu('sicak')">☕ Sıcak İçecekler</div>
+    <div class="category" onclick="showMenu('dondurma')">🍨 Dondurma</div>
   </div>
 
-  <div id="menu-container"></div>
+  <div class="menu-items" id="ana">
+    <h2>Ana Yemekler</h2>
+    <div class="item"><span>Kahvaltı tabağı</span><span>350₺</span></div>
+    <div class="item"><span>Spesyal kasap burger</span><span>380₺</span></div>
+    <div class="item"><span>Hamburger</span><span>320₺</span></div>
+    <div class="item"><span>Cheeseburger</span><span>360₺</span></div>
+    <div class="item"><span>Sosisli</span><span>150₺</span></div>
+    <div class="item"><span>Goralı</span><span>200₺</span></div>
+    <div class="item"><span>Patso</span><span>230₺</span></div>
+    <div class="item"><span>Büyük patates</span><span>280₺</span></div>
+    <div class="item"><span>Küçük patates</span><span>220₺</span></div>
+    <div class="item"><span>Kaşarlı tost</span><span>250₺</span></div>
+    <div class="item"><span>Sucuklu tost</span><span>250₺</span></div>
+    <div class="item"><span>Karışık tost</span><span>280₺</span></div>
+    <div class="item"><span>Kavurmalı kaşarlı</span><span>300₺</span></div>
+    <div class="item"><span>Köfte ekmek</span><span>350₺</span></div>
+    <div class="item"><span>Köfte porsiyon</span><span>430₺</span></div>
+    <div class="item"><span>Satır et</span><span>480₺</span></div>
+    <div class="item"><span>Sucuk ekmek</span><span>350₺</span></div>
+  </div>
+
+  <div class="menu-items" id="tatli">
+    <h2>Tatlılar</h2>
+    <div class="item"><span>Bubble waffle tabak</span><span>320₺</span></div>
+    <div class="item"><span>Waffle kapalı</span><span>300₺</span></div>
+    <div class="item"><span>Külah waffle</span><span>320₺</span></div>
+    <div class="item"><span>Cheesecake</span><span>220₺</span></div>
+    <div class="item"><span>Dilim pasta</span><span>320₺</span></div>
+  </div>
+
+  <div class="menu-items" id="soguk">
+    <h2>Soğuk İçecekler</h2>
+    <div class="item"><span>Coca cola</span><span>60₺</span></div>
+    <div class="item"><span>Fanta / Sprite / Fuse tea</span><span>60₺</span></div>
+    <div class="item"><span>Ayran</span><span>50₺</span></div>
+    <div class="item"><span>Limonata</span><span>100₺</span></div>
+    <div class="item"><span>Sade soda</span><span>40₺</span></div>
+    <div class="item"><span>Meyveli soda</span><span>50₺</span></div>
+    <div class="item"><span>Milkshake</span><span>160₺</span></div>
+    <div class="item"><span>Frappe</span><span>150₺</span></div>
+  </div>
+
+  <div class="menu-items" id="sicak">
+    <h2>Sıcak İçecekler</h2>
+    <div class="item"><span>Çay</span><span>40₺</span></div>
+    <div class="item"><span>Türk kahvesi</span><span>125₺</span></div>
+    <div class="item"><span>Double Türk kahvesi</span><span>160₺</span></div>
+    <div class="item"><span>Sade nescafe</span><span>130₺</span></div>
+    <div class="item"><span>Sütlü nescafe</span><span>160₺</span></div>
+    <div class="item"><span>Cappuccino</span><span>160₺</span></div>
+    <div class="item"><span>Latte</span><span>160₺</span></div>
+    <div class="item"><span>Espresso</span><span>150₺</span></div>
+    <div class="item"><span>Double espresso</span><span>220₺</span></div>
+    <div class="item"><span>Sıcak çikolata</span><span>160₺</span></div>
+    <div class="item"><span>Bitki çayı</span><span>100₺</span></div>
+  </div>
+
+  <div class="menu-items" id="dondurma">
+    <h2>Dondurma</h2>
+    <div class="item"><span>Dondurma top</span><span>50₺</span></div>
+    <div class="item"><span>Meyve rüyası</span><span>200₺</span></div>
+    <div class="item"><span>Çikolata rüyası</span><span>200₺</span></div>
+  </div>
 
   <script>
-    const menuler = {
-      anayemek: [
-        ["Kahvaltı Tabağı", 350],
-        ["Spesyal Kasap Burger", 380],
-        ["Hamburger", 320],
-        ["Cheeseburger", 360],
-        ["Sosisli", 150],
-        ["Goralı", 200],
-        ["Patso", 230],
-        ["Büyük Patates", 280],
-        ["Küçük Patates", 220],
-        ["Kaşarlı Tost", 250],
-        ["Sucuklu Tost", 250],
-        ["Karışık Tost", 280],
-        ["Kavurmalı Kaşarlı", 300],
-        ["Köfte Ekmek", 350],
-        ["Köfte Porsiyon", 430],
-        ["Satır Et", 480],
-        ["Sucuk Ekmek", 350]
-      ],
-      soguk: [
-        ["Coca Cola", 60],
-        ["Fanta / Sprite / Fuse Tea", 60],
-        ["Ayran", 50],
-        ["Limonata", 100],
-        ["Sade Soda", 40],
-        ["Meyveli Soda", 50],
-        ["Milkshake", 160],
-        ["Frappe", 150]
-      ],
-      sicak: [
-        ["Çay", 40],
-        ["Türk Kahvesi", 125],
-        ["Double Türk Kahvesi", 160],
-        ["Sade Nescafe", 130],
-        ["Sütlü Nescafe", 160],
-        ["Cappuccino", 160],
-        ["Latte", 160],
-        ["Espresso", 150],
-        ["Double Espresso", 220],
-        ["Sıcak Çikolata", 160],
-        ["Bitki Çayı", 100]
-      ],
-      tatli: [
-        ["Bubble Waffle Tabak", 320],
-        ["Waffle Kapalı", 300],
-        ["Külah Waffle", 320],
-        ["Cheesecake", 220],
-        ["Dilim Pasta", 320]
-      ],
-      dondurma: [
-        ["Dondurma (Top)", 50],
-        ["Meyve Rüyası", 200],
-        ["Çikolata Rüyası", 200]
-      ]
-    };
-
-    function showMenu(kategori) {
-      const container = document.getElementById("menu-container");
-      const urunler = menuler[kategori];
-
-      if (!urunler) {
-        container.innerHTML = "<p>Bu kategori bulunamadı.</p>";
-        return;
-      }
-
-      let html = `<h2>${kategori.toUpperCase()}</h2>`;
-      urunler.forEach(([isim, fiyat]) => {
-        html += `<div class="menu-item">${isim} - ${fiyat} TL</div>`;
+    function showMenu(id) {
+      document.querySelectorAll('.menu-items').forEach(el => {
+        el.style.display = 'none';
       });
-
-      container.innerHTML = html;
+      document.getElementById(id).style.display = 'block';
+      window.scrollTo(0, document.getElementById(id).offsetTop - 10);
     }
   </script>
-
 </body>
 </html>
