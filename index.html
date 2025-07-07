@@ -1,0 +1,131 @@
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kafe Menüsü</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #fffbe6;
+      text-align: center;
+      padding: 20px;
+    }
+    h1 {
+      color: #b85c38;
+    }
+    button {
+      margin: 10px;
+      padding: 15px 25px;
+      font-size: 16px;
+      background-color: #ffcc80;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    button:hover {
+      background-color: #ffb74d;
+    }
+    .menu-item {
+      margin: 10px 0;
+      font-size: 18px;
+    }
+    #menu-container {
+      margin-top: 30px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🍽️ Kafe Menüsü</h1>
+
+  <div>
+    <button onclick="showMenu('anayemek')">Ana Yemek</button>
+    <button onclick="showMenu('tatli')">Tatlı</button>
+    <button onclick="showMenu('dondurma')">Dondurma</button>
+    <button onclick="showMenu('soguk')">Soğuk İçecek</button>
+    <button onclick="showMenu('sicak')">Sıcak İçecek</button>
+  </div>
+
+  <div id="menu-container"></div>
+
+  <script>
+    const menuler = {
+      anayemek: [
+        ["Kahvaltı Tabağı", 350],
+        ["Spesyal Kasap Burger", 380],
+        ["Hamburger", 320],
+        ["Cheeseburger", 360],
+        ["Sosisli", 150],
+        ["Goralı", 200],
+        ["Patso", 230],
+        ["Büyük Patates", 280],
+        ["Küçük Patates", 220],
+        ["Kaşarlı Tost", 250],
+        ["Sucuklu Tost", 250],
+        ["Karışık Tost", 280],
+        ["Kavurmalı Kaşarlı", 300],
+        ["Köfte Ekmek", 350],
+        ["Köfte Porsiyon", 430],
+        ["Satır Et", 480],
+        ["Sucuk Ekmek", 350]
+      ],
+      soguk: [
+        ["Coca Cola", 60],
+        ["Fanta / Sprite / Fuse Tea", 60],
+        ["Ayran", 50],
+        ["Limonata", 100],
+        ["Sade Soda", 40],
+        ["Meyveli Soda", 50],
+        ["Milkshake", 160],
+        ["Frappe", 150]
+      ],
+      sicak: [
+        ["Çay", 40],
+        ["Türk Kahvesi", 125],
+        ["Double Türk Kahvesi", 160],
+        ["Sade Nescafe", 130],
+        ["Sütlü Nescafe", 160],
+        ["Cappuccino", 160],
+        ["Latte", 160],
+        ["Espresso", 150],
+        ["Double Espresso", 220],
+        ["Sıcak Çikolata", 160],
+        ["Bitki Çayı", 100]
+      ],
+      tatli: [
+        ["Bubble Waffle Tabak", 320],
+        ["Waffle Kapalı", 300],
+        ["Külah Waffle", 320],
+        ["Cheesecake", 220],
+        ["Dilim Pasta", 320]
+      ],
+      dondurma: [
+        ["Dondurma (Top)", 50],
+        ["Meyve Rüyası", 200],
+        ["Çikolata Rüyası", 200]
+      ]
+    };
+
+    function showMenu(kategori) {
+      const container = document.getElementById("menu-container");
+      const urunler = menuler[kategori];
+
+      if (!urunler) {
+        container.innerHTML = "<p>Bu kategori bulunamadı.</p>";
+        return;
+      }
+
+      let html = `<h2>${kategori.toUpperCase()}</h2>`;
+      urunler.forEach(([isim, fiyat]) => {
+        html += `<div class="menu-item">${isim} - ${fiyat} TL</div>`;
+      });
+
+      container.innerHTML = html;
+    }
+  </script>
+
+</body>
+</html>
