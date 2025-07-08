@@ -2,217 +2,169 @@
 <html lang="tr">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SweetBubble Menü</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Kafe Menü</title>
   <style>
     body {
-      font-family: 'Segoe UI', sans-serif;
-      background: #fff6f9;
       margin: 0;
-      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #fffdfa;
       text-align: center;
     }
+
     h1 {
-      color: #ff4d88;
-      margin: 20px 0;
+      font-size: 2rem;
+      margin: 0.5em 0 0;
     }
-    .category-container {
+
+    .kategori-container {
       display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 16px;
-      padding: 20px;
+      flex-direction: column;
+      gap: 1rem;
+      padding: 1rem;
     }
-    .category {
-      color: #fff;
-      padding: 20px;
-      border-radius: 12px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-      cursor: pointer;
-      width: 180px;
-      height: 120px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 18px;
-      font-weight: bold;
+
+    .kategori-button {
       background-size: cover;
       background-position: center;
-      transition: transform 0.3s, opacity 0.3s;
-    }
-    .category:hover {
-      transform: scale(1.05);
-      opacity: 0.9;
-    }
-    .menu-items {
-      display: none;
-      padding: 20px;
-      max-width: 800px;
-      margin: auto;
-      text-align: left;
-      animation: fadeIn 0.5s ease-in-out;
-    }
-    .menu-items h2 {
-      color: #ff4d88;
-      border-bottom: 1px solid #ddd;
-    }
-    .item {
-      margin: 15px 0;
-    }
-    .item-name {
-      font-weight: bold;
-      display: block;
-    }
-    .item-price {
-      font-weight: bold;
-      color: #333;
-    }
-    .item-img {
-      max-width: 100%;
-      height: auto;
-      border-radius: 8px;
-      margin-top: 8px;
-    }
-    .back-btn {
-      margin-top: 20px;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 8px;
-      background: #ff4d88;
+      height: 120px;
+      font-size: 1.5rem;
       color: white;
+      font-weight: bold;
+      border: none;
+      border-radius: 10px;
       cursor: pointer;
-    }
-    @keyframes fadeIn {
-      from {opacity: 0; transform: translateY(10px);}
-      to {opacity: 1; transform: translateY(0);}
+      text-shadow: 1px 1px 3px #000;
     }
 
-    /* Kategorilere ait arka plan görselleri */
-    .ana-bg {
-      background-image: url('https://images.unsplash.com/photo-1550547660-d9450f859349');
-    }
-    .tatli-bg {
-      background-image: url('https://images.unsplash.com/photo-1603052875768-adbe206f8993');
-    }
-    .soguk-bg {
-      background-image: url('https://images.unsplash.com/photo-1562059390-a761a084768e');
-    }
-    .sicak-bg {
-      background-image: url('https://images.unsplash.com/photo-1511920170033-f8396924c348');
-    }
-    .dondurma-bg {
-      background-image: url('https://images.unsplash.com/photo-1627308595229-7830a5c91f9f');
+    .urun-container {
+      margin-top: 2rem;
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
     }
 
-    @media only screen and (max-width: 600px) {
-      .category {
-        width: 90%;
-        height: 100px;
-        font-size: 16px;
-      }
+    .urun {
+      background-size: cover;
+      background-position: center;
+      border-radius: 10px;
+      padding: 1.5rem;
+      color: white;
+      text-shadow: 1px 1px 2px #000;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
 
-      .menu-items {
-        padding: 10px;
-        text-align: center;
-      }
+    .urun:hover {
+      transform: scale(1.02);
+    }
 
-      .item {
-        text-align: center;
-      }
-
-      .item-price {
-        text-align: center;
-        display: block;
-        margin-top: 5px;
-      }
+    .aciklama {
+      margin-top: 0.5rem;
+      background-color: rgba(0, 0, 0, 0.4);
+      padding: 0.5rem;
+      border-radius: 5px;
     }
   </style>
 </head>
 <body>
-<h1>SweetBubble Menü 🍓</h1>
+  <header>
+    <h1>Kafemize Hoş Geldiniz ☕</h1>
+    <p>Lütfen bir kategori seçin</p>
+  </header>
 
-<div class="category-container" id="categoryContainer">
-  <div class="category ana-bg" onclick="showMenu('ana')">🍔 Ana Yemekler</div>
-  <div class="category tatli-bg" onclick="showMenu('tatli')">🍰 Tatlılar</div>
-  <div class="category soguk-bg" onclick="showMenu('soguk')">🥤 Soğuk İçecekler</div>
-  <div class="category sicak-bg" onclick="showMenu('sicak')">☕ Sıcak İçecekler</div>
-  <div class="category dondurma-bg" onclick="showMenu('dondurma')">🍨 Dondurma</div>
-</div>
+  <main class="kategori-container">
+    <button class="kategori-button" onclick="showKategori('anaYemek')" style="background-image: url('https://images.unsplash.com/photo-1604908176789-0cfb1c251aaf');">Ana Yemekler</button>
+    <button class="kategori-button" onclick="showKategori('tatli')" style="background-image: url('https://images.unsplash.com/photo-1599059810401-94c4a2e3bcfa');">Tatlılar</button>
+    <button class="kategori-button" onclick="showKategori('soguk')" style="background-image: url('https://images.unsplash.com/photo-1590080876938-8bb00a25e8a2');">Soğuk İçecekler</button>
+    <button class="kategori-button" onclick="showKategori('sicak')" style="background-image: url('https://images.unsplash.com/photo-1602524810077-14d3a2730185');">Sıcak İçecekler</button>
+    <button class="kategori-button" onclick="showKategori('dondurma')" style="background-image: url('https://images.unsplash.com/photo-1607083201872-67cdb45e1bdd');">Dondurmalar</button>
+  </main>
 
-<!-- Ana Yemekler (Değiştirilmedi) -->
-<div class="menu-items" id="ana">
-  <h2>Ana Yemekler</h2>
-  <div class="item"><span class="item-name">Kahvaltı Tabağı</span><span class="item-price">350₺</span></div>
-  <div class="item"><span class="item-name">Kasap Burger</span><span class="item-price">380₺</span></div>
-  <div class="item"><span class="item-name">Hamburger</span><span class="item-price">320₺</span></div>
-  <div class="item"><span class="item-name">Cheeseburger</span><span class="item-price">360₺</span></div>
-  <button class="back-btn" onclick="goBack()">◀ Kategorilere Dön</button>
-</div>
+  <section id="urunler" class="urun-container"></section>
 
-<!-- Tatlılar -->
-<div class="menu-items" id="tatli">
-  <h2>Tatlılar</h2>
-  <div class="item">
-    <span class="item-name">Bubble Waffle</span>
-    <span class="item-price">320₺</span>
-    <img src="https://images.unsplash.com/photo-1603052875768-adbe206f8993" alt="Pasta" class="item-img" />
-  </div>
-  <div class="item"><span class="item-name">Cheesecake</span><span class="item-price">220₺</span></div>
-  <div class="item"><span class="item-name">Külah Waffle</span><span class="item-price">320₺</span></div>
-  <button class="back-btn" onclick="goBack()">◀ Kategorilere Dön</button>
-</div>
+  <script>
+    const urunler = {
+      anaYemek: [
+        {
+          ad: "Köfte Ekmek",
+          fiyat: "350₺",
+          aciklama: "Taze pişmiş köfte ve çıtır ekmekle hazırlanmış hızlı bir lezzet çözümü.",
+          resim: "https://images.unsplash.com/photo-1604908176789-0cfb1c251aaf"
+        },
+        {
+          ad: "Köfte Porsiyon",
+          fiyat: "430₺",
+          aciklama: "Izgara köftenin en sade ama en lezzetli hali, yanında garnitür ile servis edilir.",
+          resim: "https://images.unsplash.com/photo-1622441143876-a1f4b47928b8"
+        },
+        {
+          ad: "Sucuk Ekmek",
+          fiyat: "350₺",
+          aciklama: "Bol baharatlı sucukların ekmek arasındaki enfes uyumu.",
+          resim: "https://images.unsplash.com/photo-1606755962773-89744836c8ad"
+        }
+      ],
+      soguk: [
+        { ad: "Coca Cola", fiyat: "60₺", aciklama: "Klasik, gazlı ve ferahlatıcı kola.", resim: "https://images.unsplash.com/photo-1588854337330-3e7d8b860bca" },
+        { ad: "Fanta", fiyat: "60₺", aciklama: "Portakal aromalı gazlı içecek.", resim: "https://images.unsplash.com/photo-1626079755094-c187f59d5494" },
+        { ad: "Sprite", fiyat: "60₺", aciklama: "Limon aromalı serinletici gazoz.", resim: "https://images.unsplash.com/photo-1599382213330-f8249bfc34f4" },
+        { ad: "Fuse Tea", fiyat: "60₺", aciklama: "Şeftali aromalı buz gibi çay.", resim: "https://images.unsplash.com/photo-1587731153654-07b5f8aeab51" },
+        { ad: "Ayran", fiyat: "50₺", aciklama: "Geleneksel yoğurtlu Türk içeceği.", resim: "https://images.unsplash.com/photo-1641316790220-95ef39b9efbb" },
+        { ad: "Limonata", fiyat: "100₺", aciklama: "Taze limon ve nane ile serinlik.", resim: "https://images.unsplash.com/photo-1590080876938-8bb00a25e8a2" },
+        { ad: "Sade Soda", fiyat: "40₺", aciklama: "Doğal maden sodası.", resim: "https://images.unsplash.com/photo-1578290991211-76e6fe799869" },
+        { ad: "Meyveli Soda", fiyat: "50₺", aciklama: "Meyve aromalı maden suyu.", resim: "https://images.unsplash.com/photo-1502742292561-acc07e1f1c02" },
+        { ad: "Milkshake", fiyat: "160₺", aciklama: "Yoğun sütlü ve dondurmalı içecek.", resim: "https://images.unsplash.com/photo-1612197606929-5aeff6ce8a33" },
+        { ad: "Frappe", fiyat: "150₺", aciklama: "Buzlu soğuk kahve aroması.", resim: "https://images.unsplash.com/photo-1617196038439-973e4998ddf9" }
+      ],
+      sicak: [
+        { ad: "Çay", fiyat: "40₺", aciklama: "Demlikten taze Türk çayı.", resim: "https://images.unsplash.com/photo-1656329377677-b022cb35c50b" },
+        { ad: "Türk Kahvesi", fiyat: "125₺", aciklama: "Köpüklü ve geleneksel kahve.", resim: "https://images.unsplash.com/photo-1602524810077-14d3a2730185" },
+        { ad: "Double Türk Kahvesi", fiyat: "160₺", aciklama: "Daha fazla kahve, daha fazla keyif.", resim: "https://images.unsplash.com/photo-1617199543780-1f5691c6dd6c" },
+        { ad: "Sade Nescafe", fiyat: "130₺", aciklama: "Hazır sade kahve keyfi.", resim: "https://images.unsplash.com/photo-1511920170033-f8396924c348" },
+        { ad: "Sütlü Nescafe", fiyat: "160₺", aciklama: "Süt ile yumuşatılmış nescafe.", resim: "https://images.unsplash.com/photo-1523942839745-7848d1f7c93c" },
+        { ad: "Cappuccino", fiyat: "160₺", aciklama: "Köpüklü süt ve espresso karışımı.", resim: "https://images.unsplash.com/photo-1528825871115-3581a5387919" },
+        { ad: "Latte", fiyat: "160₺", aciklama: "Sütlü ve kremamsı içim.", resim: "https://images.unsplash.com/photo-1565023022186-94c3e4d0f2f4" },
+        { ad: "Espresso", fiyat: "150₺", aciklama: "Tek shot yoğun kahve.", resim: "https://images.unsplash.com/photo-1541167760496-1628856ab772" },
+        { ad: "Double Espresso", fiyat: "220₺", aciklama: "İki kat yoğun espresso.", resim: "https://images.unsplash.com/photo-1638102321024-70a0c1f8fe51" },
+        { ad: "Sıcak Çikolata", fiyat: "160₺", aciklama: "Tatlı sıcak çikolata içeceği.", resim: "https://images.unsplash.com/photo-1542452255191-c4e6abc61c89" },
+        { ad: "Bitki Çayı", fiyat: "100₺", aciklama: "Ihlamur, adaçayı ve daha fazlası.", resim: "https://images.unsplash.com/photo-1590080876938-8bb00a25e8a2" }
+      ],
+      tatli: [
+        { ad: "Bubble Waffle Tabak", fiyat: "320₺", aciklama: "Meyveli, çikolatalı şekerli fun!", resim: "https://images.unsplash.com/photo-1599059810401-94c4a2e3bcfa" },
+        { ad: "Waffle Kapalı", fiyat: "300₺", aciklama: "Katlanmış, muzlu & çilekli waffle.", resim: "https://images.unsplash.com/photo-1551022374-8d3d7b32e06c" },
+        { ad: "Külah Waffle", fiyat: "320₺", aciklama: "Külah içinde mini waffle keyfi.", resim: "https://images.unsplash.com/photo-1542219550-371053f5e1ff" },
+        { ad: "Cheesecake", fiyat: "220₺", aciklama: "New York tarzı klasik cheesecake.", resim: "https://images.unsplash.com/photo-1608586644146-44006f3efdf2" },
+        { ad: "Dilim Pasta", fiyat: "320₺", aciklama: "Günlük taze dilim pastalar.", resim: "https://images.unsplash.com/photo-1542736667-069246bdbc39" }
+      ],
+      dondurma: [
+        { ad: "Dondurma Top", fiyat: "50₺", aciklama: "Bir top sade, çikolatayla yanında.", resim: "https://images.unsplash.com/photo-1590502593741-0280a593ca2a" },
+        { ad: "Meyve Rüyası", fiyat: "200₺", aciklama: "Karışık meyveli dondurmalar.", resim: "https://images.unsplash.com/photo-1562967916-eb82221dfb25" },
+        { ad: "Çikolata Rüyası", fiyat: "200₺", aciklama: "Çikolataya doyamayanlara özel.", resim: "https://images.unsplash.com/photo-1607083201872-67cdb45e1bdd" }
+      ]
+    };
 
-<!-- Soğuk İçecekler -->
-<div class="menu-items" id="soguk">
-  <h2>Soğuk İçecekler</h2>
-  <div class="item">
-    <span class="item-name">Limonata (Taze)</span>
-    <span class="item-price">100₺</span>
-    <img src="https://images.unsplash.com/photo-1562059390-a761a084768e" alt="Limonata" class="item-img" />
-  </div>
-  <div class="item"><span class="item-name">Coca Cola</span><span class="item-price">60₺</span></div>
-  <div class="item"><span class="item-name">Ayran</span><span class="item-price">50₺</span></div>
-  <button class="back-btn" onclick="goBack()">◀ Kategorilere Dön</button>
-</div>
+    function showKategori(kategori) {
+      const container = document.getElementById('urunler');
+      container.innerHTML = "";
 
-<!-- Sıcak İçecekler (Değiştirilmedi) -->
-<div class="menu-items" id="sicak">
-  <h2>Sıcak İçecekler</h2>
-  <div class="item"><span class="item-name">Çay</span><span class="item-price">40₺</span></div>
-  <div class="item"><span class="item-name">Türk Kahvesi</span><span class="item-price">125₺</span></div>
-  <div class="item"><span class="item-name">Latte</span><span class="item-price">160₺</span></div>
-  <div class="item"><span class="item-name">Bitki Çayı</span><span class="item-price">100₺</span></div>
-  <button class="back-btn" onclick="goBack()">◀ Kategorilere Dön</button>
-</div>
-
-<!-- Dondurma -->
-<div class="menu-items" id="dondurma">
-  <h2>Dondurma</h2>
-  <div class="item">
-    <span class="item-name">Dondurma (Top)</span>
-    <span class="item-price">50₺</span>
-    <img src="https://images.unsplash.com/photo-1627308595229-7830a5c91f9f" alt="Dondurma" class="item-img" />
-  </div>
-  <div class="item"><span class="item-name">Çikolatalı Rüya</span><span class="item-price">210₺</span></div>
-  <button class="back-btn" onclick="goBack()">◀ Kategorilere Dön</button>
-</div>
-
-<script>
-  function showMenu(id) {
-    document.querySelectorAll('.menu-items').forEach(el => {
-      el.style.display = 'none';
-    });
-    document.getElementById('categoryContainer').style.display = 'none';
-    document.getElementById(id).style.display = 'block';
-    window.scrollTo(0, 0);
-  }
-
-  function goBack() {
-    document.querySelectorAll('.menu-items').forEach(el => {
-      el.style.display = 'none';
-    });
-    document.getElementById('categoryContainer').style.display = 'flex';
-  }
-</script>
+      urunler[kategori].forEach(urun => {
+        const urunEl = document.createElement('div');
+        urunEl.className = "urun";
+        urunEl.style.backgroundImage = `url(${urun.resim})`;
+        urunEl.innerHTML = `
+          <h3>${urun.ad} <span style="float:right;">${urun.fiyat}</span></h3>
+          <p class="aciklama" style="display:none;">${urun.aciklama}</p>
+        `;
+        urunEl.addEventListener('click', () => {
+          const aciklama = urunEl.querySelector(".aciklama");
+          aciklama.style.display = aciklama.style.display === "none" ? "block" : "none";
+        });
+        container.appendChild(urunEl);
+      });
+    }
+  </script>
 </body>
 </html>
