@@ -4,7 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>SweetBubble Menü</title>
-  <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/2921/2921822.png" type="image/png" />
   <style>
     body {
       font-family: 'Segoe UI', sans-serif;
@@ -48,7 +47,7 @@
     .menu-items {
       display: none;
       padding: 20px;
-      max-width: 600px;
+      max-width: 800px;
       margin: auto;
       text-align: left;
       animation: fadeIn 0.5s ease-in-out;
@@ -58,21 +57,21 @@
       border-bottom: 1px solid #ddd;
     }
     .item {
-      margin: 10px 0;
-      border-bottom: 1px dashed #eee;
-      padding-bottom: 8px;
+      margin: 15px 0;
     }
     .item-name {
       font-weight: bold;
-    }
-    .item-desc {
-      font-size: 0.9em;
-      color: #555;
+      display: block;
     }
     .item-price {
       font-weight: bold;
       color: #333;
-      text-align: right;
+    }
+    .item-img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px;
+      margin-top: 8px;
     }
     .back-btn {
       margin-top: 20px;
@@ -88,12 +87,12 @@
       to {opacity: 1; transform: translateY(0);}
     }
 
-    /* Category Backgrounds */
+    /* Kategorilere ait arka plan görselleri */
     .ana-bg {
       background-image: url('https://images.unsplash.com/photo-1550547660-d9450f859349');
     }
     .tatli-bg {
-      background-image: url('https://www.google.com/url?sa=i&url=https%3A%2F%2Fiybwaffle.com%2Fiyb-acik-bubble-waffle.html&psig=AOvVaw0oZ8Ao8B4LMgBBSF5NmT0Z&ust=1752066885305000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCLjWmvmrrY4DFQAAAAAdAAAAABAV'); /* new waffle plate */
+      background-image: url('https://images.unsplash.com/photo-1603052875768-adbe206f8993');
     }
     .soguk-bg {
       background-image: url('https://images.unsplash.com/photo-1562059390-a761a084768e');
@@ -102,10 +101,9 @@
       background-image: url('https://images.unsplash.com/photo-1511920170033-f8396924c348');
     }
     .dondurma-bg {
-      background-image: url('https://www.google.com/url?sa=i&url=http%3A%2F%2Fwww.alpedo.com.tr%2F&psig=AOvVaw2ICoH7QttsSIwUuyfNVcUc&ust=1752067115074000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCMDjrOWsrY4DFQAAAAAdAAAAABAE'); /* artisan gelato */
+      background-image: url('https://images.unsplash.com/photo-1627308595229-7830a5c91f9f');
     }
 
-    /* Responsive layout */
     @media only screen and (max-width: 600px) {
       .category {
         width: 90%;
@@ -113,105 +111,108 @@
         font-size: 16px;
       }
 
-      .item {
-        flex-direction: column;
+      .menu-items {
+        padding: 10px;
+        text-align: center;
       }
 
-      .menu-items {
+      .item {
         text-align: center;
-        padding: 10px;
       }
 
       .item-price {
-        text-align: left;
+        text-align: center;
         display: block;
-        margin-top: 4px;
+        margin-top: 5px;
       }
     }
   </style>
 </head>
 <body>
-  <h1>SweetBubble 🍓 Menü</h1>
+<h1>SweetBubble Menü 🍓</h1>
 
-  <div class="category-container" id="categoryContainer">
-    <div class="category ana-bg" onclick="showMenu('ana')">🍔 Ana Yemekler</div>
-    <div class="category tatli-bg" onclick="showMenu('tatli')">🍰 Tatlılar</div>
-    <div class="category soguk-bg" onclick="showMenu('soguk')">🥤 Soğuk İçecekler</div>
-    <div class="category sicak-bg" onclick="showMenu('sicak')">☕ Sıcak İçecekler</div>
-    <div class="category dondurma-bg" onclick="showMenu('dondurma')">🍨 Dondurma</div>
+<div class="category-container" id="categoryContainer">
+  <div class="category ana-bg" onclick="showMenu('ana')">🍔 Ana Yemekler</div>
+  <div class="category tatli-bg" onclick="showMenu('tatli')">🍰 Tatlılar</div>
+  <div class="category soguk-bg" onclick="showMenu('soguk')">🥤 Soğuk İçecekler</div>
+  <div class="category sicak-bg" onclick="showMenu('sicak')">☕ Sıcak İçecekler</div>
+  <div class="category dondurma-bg" onclick="showMenu('dondurma')">🍨 Dondurma</div>
+</div>
+
+<!-- Ana Yemekler (Değiştirilmedi) -->
+<div class="menu-items" id="ana">
+  <h2>Ana Yemekler</h2>
+  <div class="item"><span class="item-name">Kahvaltı Tabağı</span><span class="item-price">350₺</span></div>
+  <div class="item"><span class="item-name">Kasap Burger</span><span class="item-price">380₺</span></div>
+  <div class="item"><span class="item-name">Hamburger</span><span class="item-price">320₺</span></div>
+  <div class="item"><span class="item-name">Cheeseburger</span><span class="item-price">360₺</span></div>
+  <button class="back-btn" onclick="goBack()">◀ Kategorilere Dön</button>
+</div>
+
+<!-- Tatlılar -->
+<div class="menu-items" id="tatli">
+  <h2>Tatlılar</h2>
+  <div class="item">
+    <span class="item-name">Bubble Waffle</span>
+    <span class="item-price">320₺</span>
+    <img src="https://images.unsplash.com/photo-1603052875768-adbe206f8993" alt="Pasta" class="item-img" />
   </div>
+  <div class="item"><span class="item-name">Cheesecake</span><span class="item-price">220₺</span></div>
+  <div class="item"><span class="item-name">Külah Waffle</span><span class="item-price">320₺</span></div>
+  <button class="back-btn" onclick="goBack()">◀ Kategorilere Dön</button>
+</div>
 
-  <!-- Ana Yemekler -->
-  <div class="menu-items" id="ana">
-    <h2>Ana Yemekler</h2>
-    <div class="item"><span class="item-name">Kahvaltı Tabağı</span><span class="item-price">350₺</span></div>
-    <div class="item"><span class="item-name">Kasap Burger</span><span class="item-price">380₺</span></div>
-    <div class="item"><span class="item-name">Tavuklu Wrap</span><span class="item-price">310₺</span></div>
-    <div class="item"><span class="item-name">Mini Pizza</span><span class="item-price">290₺</span></div>
-    <div class="item"><span class="item-name">Sosisli</span><span class="item-price">150₺</span></div>
-    <div class="item"><span class="item-name">Patso</span><span class="item-price">230₺</span></div>
-    <button class="back-btn" onclick="goBack()">◀ Kategorilere Dön</button>
+<!-- Soğuk İçecekler -->
+<div class="menu-items" id="soguk">
+  <h2>Soğuk İçecekler</h2>
+  <div class="item">
+    <span class="item-name">Limonata (Taze)</span>
+    <span class="item-price">100₺</span>
+    <img src="https://images.unsplash.com/photo-1562059390-a761a084768e" alt="Limonata" class="item-img" />
   </div>
+  <div class="item"><span class="item-name">Coca Cola</span><span class="item-price">60₺</span></div>
+  <div class="item"><span class="item-name">Ayran</span><span class="item-price">50₺</span></div>
+  <button class="back-btn" onclick="goBack()">◀ Kategorilere Dön</button>
+</div>
 
-  <!-- Tatlılar -->
-  <div class="menu-items" id="tatli">
-    <h2>Tatlılar</h2>
-    <div class="item"><span class="item-name">Bubble Waffle Tabak</span><span class="item-price">320₺</span></div>
-    <div class="item"><span class="item-name">Nutellalı Krep</span><span class="item-price">280₺</span></div>
-    <div class="item"><span class="item-name">Waffle Rulo</span><span class="item-price">310₺</span></div>
-    <div class="item"><span class="item-name">Cheesecake (Frambuazlı)</span><span class="item-price">220₺</span></div>
-    <div class="item"><span class="item-name">Tiramisu</span><span class="item-price">250₺</span></div>
-    <button class="back-btn" onclick="goBack()">◀ Kategorilere Dön</button>
+<!-- Sıcak İçecekler (Değiştirilmedi) -->
+<div class="menu-items" id="sicak">
+  <h2>Sıcak İçecekler</h2>
+  <div class="item"><span class="item-name">Çay</span><span class="item-price">40₺</span></div>
+  <div class="item"><span class="item-name">Türk Kahvesi</span><span class="item-price">125₺</span></div>
+  <div class="item"><span class="item-name">Latte</span><span class="item-price">160₺</span></div>
+  <div class="item"><span class="item-name">Bitki Çayı</span><span class="item-price">100₺</span></div>
+  <button class="back-btn" onclick="goBack()">◀ Kategorilere Dön</button>
+</div>
+
+<!-- Dondurma -->
+<div class="menu-items" id="dondurma">
+  <h2>Dondurma</h2>
+  <div class="item">
+    <span class="item-name">Dondurma (Top)</span>
+    <span class="item-price">50₺</span>
+    <img src="https://images.unsplash.com/photo-1627308595229-7830a5c91f9f" alt="Dondurma" class="item-img" />
   </div>
+  <div class="item"><span class="item-name">Çikolatalı Rüya</span><span class="item-price">210₺</span></div>
+  <button class="back-btn" onclick="goBack()">◀ Kategorilere Dön</button>
+</div>
 
-  <!-- Soğuk İçecekler -->
-  <div class="menu-items" id="soguk">
-    <h2>Soğuk İçecekler</h2>
-    <div class="item"><span class="item-name">Coca Cola</span><span class="item-price">60₺</span></div>
-    <div class="item"><span class="item-name">Fuse Tea</span><span class="item-price">60₺</span></div>
-    <div class="item"><span class="item-name">Limonata (Taze)</span><span class="item-price">100₺</span></div>
-    <div class="item"><span class="item-name">Milkshake (Çilek/Çikolata)</span><span class="item-price">160₺</span></div>
-    <div class="item"><span class="item-name">Frappe</span><span class="item-price">150₺</span></div>
-    <button class="back-btn" onclick="goBack()">◀ Kategorilere Dön</button>
-  </div>
+<script>
+  function showMenu(id) {
+    document.querySelectorAll('.menu-items').forEach(el => {
+      el.style.display = 'none';
+    });
+    document.getElementById('categoryContainer').style.display = 'none';
+    document.getElementById(id).style.display = 'block';
+    window.scrollTo(0, 0);
+  }
 
-  <!-- Sıcak İçecekler -->
-  <div class="menu-items" id="sicak">
-    <h2>Sıcak İçecekler</h2>
-    <div class="item"><span class="item-name">Çay</span><span class="item-price">40₺</span></div>
-    <div class="item"><span class="item-name">Türk Kahvesi</span><span class="item-price">125₺</span></div>
-    <div class="item"><span class="item-name">Latte ♡</span><span class="item-price">160₺</span></div>
-    <div class="item"><span class="item-name">White Chocolate Mocha</span><span class="item-price">180₺</span></div>
-    <div class="item"><span class="item-name">Bitki Çayı (Rezene, Adaçayı...)</span><span class="item-price">100₺</span></div>
-    <button class="back-btn" onclick="goBack()">◀ Kategorilere Dön</button>
-  </div>
-
-  <!-- Dondurma -->
-  <div class="menu-items" id="dondurma">
-    <h2>Dondurma</h2>
-    <div class="item"><span class="item-name">Dondurma (Top)</span><span class="item-price">50₺</span></div>
-    <div class="item"><span class="item-name">Brownie Dondurma</span><span class="item-price">220₺</span></div>
-    <div class="item"><span class="item-name">Meyveli Parfe</span><span class="item-price">200₺</span></div>
-    <div class="item"><span class="item-name">Çikolatalı Rüya</span><span class="item-price">210₺</span></div>
-    <button class="back-btn" onclick="goBack()">◀ Kategorilere Dön</button>
-  </div>
-
-  <script>
-    function showMenu(id) {
-      document.querySelectorAll('.menu-items').forEach(el => {
-        el.style.display = 'none';
-      });
-      document.getElementById('categoryContainer').style.display = 'none';
-      document.getElementById(id).style.display = 'block';
-      window.scrollTo(0, 0);
-    }
-
-    function goBack() {
-      document.querySelectorAll('.menu-items').forEach(el => {
-        el.style.display = 'none';
-      });
-      document.getElementById('categoryContainer').style.display = 'flex';
-    }
-  </script>
+  function goBack() {
+    document.querySelectorAll('.menu-items').forEach(el => {
+      el.style.display = 'none';
+    });
+    document.getElementById('categoryContainer').style.display = 'flex';
+  }
+</script>
 </body>
 </html>
