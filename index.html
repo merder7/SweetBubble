@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>SweetBubble Menü</title>
+  <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/2921/2921822.png" type="image/png" />
   <style>
     body {
       font-family: 'Segoe UI', sans-serif;
@@ -57,10 +58,9 @@
       border-bottom: 1px solid #ddd;
     }
     .item {
-      display: flex;
-      justify-content: space-between;
       margin: 10px 0;
-      flex-direction: column;
+      border-bottom: 1px dashed #eee;
+      padding-bottom: 8px;
     }
     .item-name {
       font-weight: bold;
@@ -87,11 +87,13 @@
       from {opacity: 0; transform: translateY(10px);}
       to {opacity: 1; transform: translateY(0);}
     }
+
+    /* Category Backgrounds */
     .ana-bg {
       background-image: url('https://images.unsplash.com/photo-1550547660-d9450f859349');
     }
     .tatli-bg {
-      background-image: url('https://images.unsplash.com/photo-1601979031925-56f9f27be0df');
+      background-image: url('https://images.unsplash.com/photo-1600891964599-f61ba0e24092'); /* new waffle plate */
     }
     .soguk-bg {
       background-image: url('https://images.unsplash.com/photo-1562059390-a761a084768e');
@@ -100,12 +102,36 @@
       background-image: url('https://images.unsplash.com/photo-1511920170033-f8396924c348');
     }
     .dondurma-bg {
-      background-image: url('https://images.unsplash.com/photo-1620049262996-3f7ecca1b3c1');
+      background-image: url('https://images.unsplash.com/photo-1627843563095-395495c36ba3'); /* artisan gelato */
+    }
+
+    /* Responsive layout */
+    @media only screen and (max-width: 600px) {
+      .category {
+        width: 90%;
+        height: 100px;
+        font-size: 16px;
+      }
+
+      .item {
+        flex-direction: column;
+      }
+
+      .menu-items {
+        text-align: center;
+        padding: 10px;
+      }
+
+      .item-price {
+        text-align: left;
+        display: block;
+        margin-top: 4px;
+      }
     }
   </style>
 </head>
 <body>
-  <h1>SweetBubble Menü</h1>
+  <h1>SweetBubble 🍓 Menü</h1>
 
   <div class="category-container" id="categoryContainer">
     <div class="category ana-bg" onclick="showMenu('ana')">🍔 Ana Yemekler</div>
@@ -115,72 +141,58 @@
     <div class="category dondurma-bg" onclick="showMenu('dondurma')">🍨 Dondurma</div>
   </div>
 
+  <!-- Ana Yemekler -->
   <div class="menu-items" id="ana">
     <h2>Ana Yemekler</h2>
     <div class="item"><span class="item-name">Kahvaltı Tabağı</span><span class="item-price">350₺</span></div>
-    <div class="item"><span class="item-name">Spesyal Kasap Burger</span><span class="item-price">380₺</span></div>
-    <div class="item"><span class="item-name">Hamburger</span><span class="item-price">320₺</span></div>
-    <div class="item"><span class="item-name">Cheeseburger</span><span class="item-price">360₺</span></div>
+    <div class="item"><span class="item-name">Kasap Burger</span><span class="item-price">380₺</span></div>
+    <div class="item"><span class="item-name">Tavuklu Wrap</span><span class="item-price">310₺</span></div>
+    <div class="item"><span class="item-name">Mini Pizza</span><span class="item-price">290₺</span></div>
     <div class="item"><span class="item-name">Sosisli</span><span class="item-price">150₺</span></div>
-    <div class="item"><span class="item-name">Goralı</span><span class="item-price">200₺</span></div>
     <div class="item"><span class="item-name">Patso</span><span class="item-price">230₺</span></div>
-    <div class="item"><span class="item-name">Büyük Patates</span><span class="item-price">280₺</span></div>
-    <div class="item"><span class="item-name">Küçük Patates</span><span class="item-price">220₺</span></div>
-    <div class="item"><span class="item-name">Kaşarlı Tost</span><span class="item-price">250₺</span></div>
-    <div class="item"><span class="item-name">Sucuklu Tost</span><span class="item-price">250₺</span></div>
-    <div class="item"><span class="item-name">Karışık Tost</span><span class="item-price">280₺</span></div>
-    <div class="item"><span class="item-name">Kavurmalı Kaşarlı Tost</span><span class="item-price">300₺</span></div>
-    <div class="item"><span class="item-name">Köfte Ekmek</span><span class="item-price">350₺</span></div>
-    <div class="item"><span class="item-name">Köfte Porsiyon</span><span class="item-price">430₺</span></div>
-    <div class="item"><span class="item-name">Satır Et</span><span class="item-price">480₺</span></div>
-    <div class="item"><span class="item-name">Sucuk Ekmek</span><span class="item-price">350₺</span></div>
     <button class="back-btn" onclick="goBack()">◀ Kategorilere Dön</button>
   </div>
 
+  <!-- Tatlılar -->
   <div class="menu-items" id="tatli">
     <h2>Tatlılar</h2>
     <div class="item"><span class="item-name">Bubble Waffle Tabak</span><span class="item-price">320₺</span></div>
-    <div class="item"><span class="item-name">Waffle Kapalı</span><span class="item-price">300₺</span></div>
-    <div class="item"><span class="item-name">Külah Waffle</span><span class="item-price">320₺</span></div>
-    <div class="item"><span class="item-name">Cheesecake</span><span class="item-price">220₺</span></div>
-    <div class="item"><span class="item-name">Dilim Pasta</span><span class="item-price">320₺</span></div>
+    <div class="item"><span class="item-name">Nutellalı Krep</span><span class="item-price">280₺</span></div>
+    <div class="item"><span class="item-name">Waffle Rulo</span><span class="item-price">310₺</span></div>
+    <div class="item"><span class="item-name">Cheesecake (Frambuazlı)</span><span class="item-price">220₺</span></div>
+    <div class="item"><span class="item-name">Tiramisu</span><span class="item-price">250₺</span></div>
     <button class="back-btn" onclick="goBack()">◀ Kategorilere Dön</button>
   </div>
 
+  <!-- Soğuk İçecekler -->
   <div class="menu-items" id="soguk">
     <h2>Soğuk İçecekler</h2>
     <div class="item"><span class="item-name">Coca Cola</span><span class="item-price">60₺</span></div>
-    <div class="item"><span class="item-name">Fanta / Sprite / Fuse Tea</span><span class="item-price">60₺</span></div>
-    <div class="item"><span class="item-name">Ayran</span><span class="item-price">50₺</span></div>
-    <div class="item"><span class="item-name">Limonata</span><span class="item-price">100₺</span></div>
-    <div class="item"><span class="item-name">Sade Soda</span><span class="item-price">40₺</span></div>
-    <div class="item"><span class="item-name">Meyveli Soda</span><span class="item-price">50₺</span></div>
-    <div class="item"><span class="item-name">Milkshake</span><span class="item-price">160₺</span></div>
+    <div class="item"><span class="item-name">Fuse Tea</span><span class="item-price">60₺</span></div>
+    <div class="item"><span class="item-name">Limonata (Taze)</span><span class="item-price">100₺</span></div>
+    <div class="item"><span class="item-name">Milkshake (Çilek/Çikolata)</span><span class="item-price">160₺</span></div>
     <div class="item"><span class="item-name">Frappe</span><span class="item-price">150₺</span></div>
     <button class="back-btn" onclick="goBack()">◀ Kategorilere Dön</button>
   </div>
 
+  <!-- Sıcak İçecekler -->
   <div class="menu-items" id="sicak">
     <h2>Sıcak İçecekler</h2>
     <div class="item"><span class="item-name">Çay</span><span class="item-price">40₺</span></div>
     <div class="item"><span class="item-name">Türk Kahvesi</span><span class="item-price">125₺</span></div>
-    <div class="item"><span class="item-name">Double Türk Kahvesi</span><span class="item-price">160₺</span></div>
-    <div class="item"><span class="item-name">Sade Nescafe</span><span class="item-price">130₺</span></div>
-    <div class="item"><span class="item-name">Sütlü Nescafe</span><span class="item-price">160₺</span></div>
-    <div class="item"><span class="item-name">Cappuchino</span><span class="item-price">160₺</span></div>
-    <div class="item"><span class="item-name">Latte</span><span class="item-price">160₺</span></div>
-    <div class="item"><span class="item-name">Espresso</span><span class="item-price">150₺</span></div>
-    <div class="item"><span class="item-name">Double Espresso</span><span class="item-price">220₺</span></div>
-    <div class="item"><span class="item-name">Sıcak Çikolata</span><span class="item-price">160₺</span></div>
-    <div class="item"><span class="item-name">Bitki Çayı</span><span class="item-price">100₺</span></div>
+    <div class="item"><span class="item-name">Latte ♡</span><span class="item-price">160₺</span></div>
+    <div class="item"><span class="item-name">White Chocolate Mocha</span><span class="item-price">180₺</span></div>
+    <div class="item"><span class="item-name">Bitki Çayı (Rezene, Adaçayı...)</span><span class="item-price">100₺</span></div>
     <button class="back-btn" onclick="goBack()">◀ Kategorilere Dön</button>
   </div>
 
+  <!-- Dondurma -->
   <div class="menu-items" id="dondurma">
     <h2>Dondurma</h2>
     <div class="item"><span class="item-name">Dondurma (Top)</span><span class="item-price">50₺</span></div>
-    <div class="item"><span class="item-name">Meyve Rüyası</span><span class="item-price">200₺</span></div>
-    <div class="item"><span class="item-name">Çikolata Rüyası</span><span class="item-price">200₺</span></div>
+    <div class="item"><span class="item-name">Brownie Dondurma</span><span class="item-price">220₺</span></div>
+    <div class="item"><span class="item-name">Meyveli Parfe</span><span class="item-price">200₺</span></div>
+    <div class="item"><span class="item-name">Çikolatalı Rüya</span><span class="item-price">210₺</span></div>
     <button class="back-btn" onclick="goBack()">◀ Kategorilere Dön</button>
   </div>
 
